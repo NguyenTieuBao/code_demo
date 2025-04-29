@@ -1,0 +1,127 @@
+{% load static %} 
+{% load humanize %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shop Grid - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/login.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/order.css' %}" />
+
+</head>
+
+<body>
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            <ul class="useful-links">
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                    
+                                {% if user_role == 'Admin' %}
+                                    <li><a href="{% url 'create_category' %}">Create Category</a></li>
+                                    <li><a href="{% url 'create_product' %}">Create Product</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-end">
+                            <ul class="user-login">
+                                {% if user.is_authenticated %}
+                                    <li>
+                                        <a href="{% url 'logout' %}">Logout</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'changepassword' %}">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'order-list' %}">Order List</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'login' %}">Sign In</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'register' %}">Register</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </header>
+    {% block content %}
+    <h2>Danh sách đơn hàng</h2>
+    
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Mã đơn</th>
+                <th>SĐT</th>
+                <th>Địa chỉ</th>
+                <th>Tổng tiền</th>
+                <th>Ngày tạo</th>
+                <th>Chi tiết</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.total_price|floatformat:0|intcomma }} đ</td>
+                <td>{{ order.create_at }}</td>
+                <td>
+                    <ul>
+                        {% for item in order.details.all %}
+                        <li>{{ item.product.title }} x {{ item.quantity }} ({{ item.price|floatformat:0|intcomma }} đ)</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6">Không có đơn hàng nào.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
+
+    
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

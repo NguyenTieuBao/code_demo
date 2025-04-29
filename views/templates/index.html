@@ -1,0 +1,244 @@
+{% load static %} 
+{% load humanize %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shop Grid - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+
+</head>
+
+<body>
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            <ul class="useful-links">
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                    
+                                {% if user_role == 'Admin' %}
+                                    <li><a href="{% url 'create_category' %}">Create Category</a></li>
+                                    <li><a href="{% url 'create_product' %}">Create Product</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-end">
+                            <ul class="user-login">
+                                {% if user.is_authenticated %}
+                                    <li>
+                                        <a href="{% url 'logout' %}">Logout</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'changepassword' %}">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'order-list' %}">Order List</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'login' %}">Sign In</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'register' %}">Register</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </header>
+    <section class="product-grids section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-12">
+                    <!-- Start Product Sidebar -->
+                    <div class="product-sidebar">
+                        <div class="single-widget search">
+                            <h3>Search Product</h3>
+                            <form method="GET" action="">
+                                <input type="text" name="title" placeholder="Search Here..." value="{{ request.GET.title|default:'' }}">
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                        
+                        <div class="single-widget">
+                            <h3>All Categories</h3>
+                            <ul class="list">
+                                <li><a href="{% url 'index' %}">All Products</a></li>
+                                {% for category in categories %}
+                                    <li>
+                                        <a href="?category={{ category.name }}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}">
+                                            {% if selected_category == category.name %}
+                                                <strong>{{ category.name }}</strong>
+                                            {% else %}
+                                                {{ category.name }}
+                                            {% endif %}
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <form method="GET" action="">
+                            <!-- Filter by Price -->
+                            <div class="single-widget condition">
+                                <h3>Filter by Price</h3>
+                        
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price_range" value="100000-200000"
+                                           {% if request.GET.price_range == "100000-200000" %}checked{% endif %}
+                                           onchange="this.form.submit()">
+                                    <label class="form-check-label">
+                                        100.000 - 200.000
+                                    </label>
+                                </div>
+                        
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price_range" value="200000-300000"
+                                           {% if request.GET.price_range == "200000-300000" %}checked{% endif %}
+                                           onchange="this.form.submit()">
+                                    <label class="form-check-label">
+                                        200.000 - 300.000
+                                    </label>
+                                </div>
+                        
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price_range" value="300000-400000"
+                                           {% if request.GET.price_range == "300000-400000" %}checked{% endif %}
+                                           onchange="this.form.submit()">
+                                    <label class="form-check-label">
+                                        300.000 - 400.000
+                                    </label>
+                                </div>
+                        
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="price_range" value="400000-500000"
+                                           {% if request.GET.price_range == "400000-500000" %}checked{% endif %}
+                                           onchange="this.form.submit()">
+                                    <label class="form-check-label">
+                                        400.000 - 500.000
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        
+                        
+                    </div>
+                    <!-- End Product Sidebar -->
+                </div>
+                <div class="col-lg-9 col-12">
+                    <div class="product-grids-head">
+                        <div class="product-grid-topbar">
+                            <div class="row align-items-center">
+                                <div class="col-lg-7 col-md-8 col-12">
+                                    <div class="product-sorting">
+                                        
+                                        <h3 class="total-show-product">Showing: <span>1 - 6 items</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-grid" role="tabpanel"
+                                aria-labelledby="nav-grid-tab">
+                                <div class="row">
+                                    {% for product in products %}
+                                    <div class="col-lg-4 col-md-6 col-12">
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                            </div>
+                                            <div class="product-info">
+                                                <span class="category">{{ product.category.name }}</span>
+                                                <h4 class="title">
+                                                    <a href="{% url 'product_detail' slug=product.slug %}">{{ product.title }}</a>
+                                                </h4>
+                                                <div class="price">
+                                                    <span>{{ product.price|floatformat:0|intcomma }} đ</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                    <p>No products found.</p>
+                                    {% endfor %}
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="pagination left">
+                                            <ul class="pagination-list">
+                                                {% if current_page > 1 %}
+                                                    <li>
+                                                        <a href="?page={{ current_page|add:"-1" }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}">« Prev</a>
+                                                    </li>
+                                                {% endif %}
+                                        
+                                                {# Hiện đầy đủ tất cả số trang #}
+                                                {% for num in range_total_pages %}
+                                                    <li {% if num == current_page %}class="active"{% endif %}>
+                                                        <a href="?page={{ num }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}">
+                                                            {{ num }}
+                                                        </a>
+                                                    </li>
+                                                {% endfor %}
+                                        
+                                                {% if current_page < total_pages %}
+                                                    <li>
+                                                        <a href="?page={{ current_page|add:"1" }}{% if selected_category %}&category={{ selected_category }}{% endif %}{% if min_price %}&min_price={{ min_price }}{% endif %}{% if max_price %}&max_price={{ max_price }}{% endif %}">Next »</a>
+                                                    </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Product Grids -->
+
+    
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+   
+</body>
+
+</html>

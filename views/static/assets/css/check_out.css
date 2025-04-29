@@ -1,0 +1,270 @@
+.shopping-cart {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+.cart-list-head {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.cart-list-title p {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.cart-single-list {
+    border-top: 1px solid #eee;
+    padding: 20px 0;
+}
+
+.cart-single-list img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.product-name a {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+}
+
+.product-name a:hover {
+    color: #ff6f61;
+}
+
+.product-des {
+    margin-top: 8px;
+}
+
+.product-des span {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+
+.count-input select {
+    width: 70px;
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.remove-item {
+    font-size: 20px;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.remove-item:hover {
+    color: #ff6f61;
+}
+
+.total-amount {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.total-amount .left .coupon input {
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.total-amount .left .coupon .button {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.total-amount .left .coupon .btn {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.total-amount .left .coupon .btn:hover {
+    background-color: #e65b50;
+}
+
+.total-amount .right ul {
+    list-style: none;
+    padding: 0;
+}
+
+.total-amount .right ul li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-amount .right ul li.last {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.total-amount .right .button {
+    margin-top: 20px;
+}
+
+.total-amount .right .btn {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.total-amount .right .btn:hover {
+    background-color: #e65b50;
+}
+
+.total-amount .right .btn-alt {
+    background-color: #555;
+}
+
+.total-amount .right .btn-alt:hover {
+    background-color: #333;
+}
+
+
+.order-summary {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.order-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product-info {
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 1rem;
+    color: #666;
+}
+
+.total {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.total li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.total .last {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+
+.checkout-form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.checkout-form h3 {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.checkout-form .form-control {
+    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.checkout-form label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.checkout-form .row {
+    margin-bottom: 20px;
+}
+
+.checkout-form .col-md-6 {
+    margin-bottom: 15px;
+}
+
+.checkout-form .btn-submit {
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-form .btn-submit:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.checkout-form .btn-submit:focus {
+    outline: none;
+}

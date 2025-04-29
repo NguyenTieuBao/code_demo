@@ -1,0 +1,87 @@
+/* ===== Bảng danh sách sản phẩm ===== */
+.style_table {
+    margin-left: -20%;
+    
+}
+.style_create {
+    margin-left: 0;
+    margin-right: -25%;
+}
+table.table {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-size: 14px;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    padding: 12px;
+    vertical-align: middle;
+}
+
+.table td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/* Ảnh sản phẩm trong bảng */
+.table img {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Nút sửa / xóa */
+.btn-warning, .btn-danger {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* Hover highlight */
+.table-hover tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* ===== Form sản phẩm ===== */
+form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+form h4 {
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+form .btn-primary {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 0;
+    border-radius: 8px;
+}
+
+/* ===== Layout chia 2 bên ===== */
+.container .row {
+    gap: 20px;
+}
+
+/* ===== Responsive tweak ===== */
+@media (max-width: 768px) {
+    .col-md-7, .col-md-5 {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút */
+}

@@ -1,0 +1,139 @@
+{% load static %} 
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Shop Grid - ShopGrids Bootstrap 5 eCommerce HTML Template.</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/LineIcons.3.0.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/tiny-slider.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/glightbox.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+
+</head>
+
+<body>
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <!-- Start Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-middle">
+                            <ul class="useful-links">
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                    
+                                    <li><a href="{% url 'create_category' %}">Create Category</a></li>
+                                    <li><a href="{% url 'create_product' %}">Create Product</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="top-end">
+                            <ul class="user-login">
+                                {% if user.is_authenticated %}
+                                    <li>
+                                        <a href="{% url 'logout' %}">Logout</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'changepassword' %}">Change Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'order-list' %}">Order List</a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'login' %}">Sign In</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'register' %}">Register</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </header>
+
+
+
+
+
+
+    {% block content %}
+    <div class="container mt-5">
+        <h2>{% if editing_mode %}Edit Category{% else %}Create Category{% endif %}</h2>
+    
+        <form method="POST" class="mb-4" 
+              action="{% if editing_mode %}{% url 'edit_category' category_to_edit.id %}{% else %}{% url 'create_category' %}{% endif %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Category Name:</label>
+                <input type="text" name="name" id="name" class="form-control"
+                       value="{% if editing_mode %}{{ category_to_edit.name }}{% endif %}" required>
+            </div>
+            <button type="submit" class="btn btn-{% if editing_mode %}success{% else %}primary{% endif %}">
+                {% if editing_mode %}Update{% else %}Create{% endif %}
+            </button>
+            {% if editing_mode %}
+                <a href="{% url 'create_category' %}" class="btn btn-secondary">Cancel</a>
+            {% endif %}
+        </form>
+    
+        <h3>Category List</h3>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td>
+                        <a href="{% url 'edit_category' category.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_category' category.id %}" class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="3">No categories found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
+    
+
+
+
+
+
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/tiny-slider.js' %}"></script>
+    <script src="{% static 'assets/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+   
+</body>
+
+</html>
